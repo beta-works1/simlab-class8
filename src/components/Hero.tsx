@@ -1,14 +1,8 @@
-import { useMemo, type CSSProperties } from 'react'
+import { type CSSProperties } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'motion/react'
-import { HeroPreview } from './hero/HeroPreview'
 import { simulationOpenHref } from './SimulationGrid'
-import {
-  GRADES,
-  getSimulationById,
-  getSimulationsByGrade,
-  simulations,
-} from '../data/simulations'
+import { catalogSimulations } from '../data/simulations'
 import './Hero.css'
 
 const ease = [0.22, 1, 0.36, 1] as const
@@ -34,8 +28,8 @@ const MOTES = [
 export function Hero() {
   const reduce = useReducedMotion()
 
-  const featureSim = useMemo(() => getSimulationById('global-warming'), [])
-  const totalSims = simulations.length
+  const featureSim = catalogSimulations[0]
+  const totalSims = catalogSimulations.length
 
   const rise = (delay = 0) =>
     reduce
@@ -76,9 +70,7 @@ export function Hero() {
           <motion.p className="hero-eyebrow" {...rise(0)}>
             Free to use
             <span aria-hidden="true"> · </span>
-            Grades 1–8
-            <span aria-hidden="true"> · </span>
-            Grade 8 follows the Punjab textbook
+            Class 8 PCTB science labs
           </motion.p>
 
           <motion.h1 id="hero-headline" className="hero-headline" {...rise(0.08)}>
@@ -88,47 +80,17 @@ export function Hero() {
           </motion.h1>
 
           <motion.p className="hero-lede" {...rise(0.16)}>
-            {totalSims} interactive science and math simulations for students and teachers — open
+            {totalSims} interactive science labs for students and teachers — open
             one, change something, and watch what it does to the result.
           </motion.p>
-
-          <motion.div className="hero-grades" {...rise(0.24)}>
-            <p className="hero-grades-label" id="hero-grade-label">
-              Jump to your grade
-            </p>
-            <ul className="hero-grade-chips" aria-labelledby="hero-grade-label">
-              {GRADES.map((grade, i) => {
-                const count = getSimulationsByGrade(grade).length
-                return (
-                  <motion.li
-                    key={grade}
-                    initial={reduce ? false : { opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: 0.3 + i * 0.04, ease }}
-                    whileHover={reduce ? undefined : { y: -3, scale: 1.04 }}
-                    whileTap={reduce ? undefined : { scale: 0.97 }}
-                  >
-                    <Link
-                      to={`/simulations?grade=${grade}`}
-                      className="hero-grade-chip"
-                      aria-label={`Grade ${grade} — ${count} simulation${count === 1 ? '' : 's'}`}
-                    >
-                      <span className="hero-grade-num">{grade}</span>
-                      <span className="hero-grade-meta">{count}</span>
-                    </Link>
-                  </motion.li>
-                )
-              })}
-            </ul>
-          </motion.div>
 
           <motion.div className="hero-actions" {...rise(0.34)}>
             <motion.div
               whileHover={reduce ? undefined : { y: -2 }}
               whileTap={reduce ? undefined : { scale: 0.98 }}
             >
-              <Link to="/simulations?grade=8&chapter=final-pctb-labs" className="hero-cta">
-                Final simulations
+              <Link to="/simulations" className="hero-cta">
+                Explore all 12 labs
                 <span className="hero-cta-arrow" aria-hidden="true">
                   →
                 </span>
@@ -143,10 +105,16 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.15, ease }}
         >
-          <HeroPreview
-            simHref={featureSim ? simulationOpenHref(featureSim) : '/simulations?grade=8'}
-            simLabel={featureSim ? featureSim.title : 'the simulation'}
-          />
+          {featureSim && (
+            <a className="hero-lab-preview" href={simulationOpenHref(featureSim)} target="_blank" rel="noopener noreferrer">
+              <img src={featureSim.image} alt="Battery, wires and bulb on a circuit workbench" width={600} height={390} />
+              <span className="hero-lab-caption">
+                <strong>{featureSim.title}</strong>
+                <span>Build a circuit. Light the bulb.</span>
+                <b>Open the lab ↗</b>
+              </span>
+            </a>
+          )}
         </motion.div>
       </div>
     </section>

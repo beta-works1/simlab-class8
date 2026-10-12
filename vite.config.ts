@@ -57,13 +57,13 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg'],
       manifest: {
-        name: 'General Science 8 Simulations',
-        short_name: 'GS8 Sims',
-        description: 'SNC 2022 Grade 8 interactive simulations (offline-capable)',
+        name: 'SimLab Class 8 Science Labs',
+        short_name: 'SimLab',
+        description: 'Twelve interactive Class 8 PCTB science labs',
         theme_color: '#0ea5e9',
         background_color: '#f7f4ef',
         display: 'standalone',
-        start_url: '/gs8',
+        start_url: '/simulations',
         icons: [
           {
             src: '/favicon.svg',

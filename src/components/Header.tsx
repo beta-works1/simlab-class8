@@ -2,7 +2,7 @@ import { useEffect, useId, useRef, useState, type FormEvent } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { Logo } from './Logo'
-import { GRADES, gradeLabel } from '../data/simulations'
+import { SUBJECT_GROUPS } from '../data/subjects'
 import './Header.css'
 
 function SearchIcon() {
@@ -133,17 +133,12 @@ export function Header({ onSearch }: HeaderProps) {
 
   const simsLinks = (
     <>
-      <NavLink to="/simulations" end onClick={closeAll}>
-        All Grades
-      </NavLink>
-      {GRADES.map((grade) => (
-        <NavLink key={grade} to={`/simulations?grade=${grade}`} onClick={closeAll}>
-          {gradeLabel(grade)}
-        </NavLink>
+      <Link to="/simulations" onClick={closeAll}>All 12 labs</Link>
+      {SUBJECT_GROUPS.map((subject) => (
+        <Link key={subject.id} to={subject.href} onClick={closeAll}>
+          {subject.name}
+        </Link>
       ))}
-      <NavLink to="/simulations?grade=8&chapter=final-pctb-labs" onClick={closeAll}>
-        Final simulations
-      </NavLink>
     </>
   )
 
@@ -204,12 +199,6 @@ export function Header({ onSearch }: HeaderProps) {
                   className={({ isActive }) => `nav-link${isActive ? ' is-active' : ''}`}
                 >
                   About
-                </NavLink>
-                <NavLink
-                  to="/simulations?grade=8&chapter=final-pctb-labs"
-                  className={({ isActive }) => `nav-link${isActive ? ' is-active' : ''}`}
-                >
-                  Final Labs
                 </NavLink>
               </nav>
             )}

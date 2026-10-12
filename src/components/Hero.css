@@ -130,82 +130,6 @@
   text-wrap: pretty;
 }
 
-.hero-grades-label {
-  margin: 0 0 0.7rem;
-  font-family: var(--font-ui);
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: rgba(163, 180, 198, 0.85);
-}
-
-/* tidy 4x2 block on phones, single row once there is width for it */
-.hero-grade-chips {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 0.5rem;
-  max-width: 22rem;
-}
-
-.hero-grade-chips > li {
-  display: flex;
-}
-
-.hero-grade-chips a {
-  flex: 1;
-}
-
-.hero-grade-chip {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1px;
-  min-width: 48px;
-  min-height: 48px;
-  padding: 0.4rem 0.55rem;
-  border-radius: 14px;
-  border: 1px solid rgba(244, 236, 224, 0.16);
-  background: rgba(20, 36, 58, 0.9);
-  text-decoration: none;
-  transition: background 0.2s var(--ease-out), border-color 0.2s var(--ease-out),
-    box-shadow 0.2s var(--ease-out);
-}
-
-.hero-grade-num {
-  font-family: var(--font-display);
-  font-size: 1.2rem;
-  font-weight: 600;
-  line-height: 1;
-  color: var(--paper);
-}
-
-.hero-grade-meta {
-  font-family: var(--font-ui);
-  font-size: 0.62rem;
-  letter-spacing: 0.06em;
-  color: rgba(163, 180, 198, 0.8);
-}
-
-.hero-grade-chip:hover {
-  background: rgba(251, 191, 36, 0.14);
-  border-color: rgba(251, 191, 36, 0.55);
-  box-shadow: 0 8px 24px -10px rgba(251, 191, 36, 0.5);
-}
-
-.hero-grade-chip:hover .hero-grade-num {
-  color: var(--sun-200);
-}
-
-.hero-grade-chip:focus-visible {
-  outline: 3px solid var(--sun-400);
-  outline-offset: 3px;
-}
-
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
@@ -323,3 +247,11 @@
     animation: none;
   }
 }
+
+.hero-lab-preview { display: block; overflow: hidden; border: 1px solid #708599; border-radius: 24px; background: #14243a; color: var(--paper); text-decoration: none; box-shadow: 0 24px 60px #0004; }
+.hero-lab-preview img { display: block; width: 100%; height: auto; }
+.hero-lab-caption { display: grid; gap: .6rem; padding: 1.5rem; }
+.hero-lab-caption strong { font-family: var(--font-display); font-size: 1.65rem; line-height: 1.2; }
+.hero-lab-caption span { color: var(--on-dusk-muted); }
+.hero-lab-caption b { margin-top: .4rem; color: var(--sun-400); }
+.hero-lab-preview:focus-visible { outline: 3px solid var(--sun-400); outline-offset: 5px; }

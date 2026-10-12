@@ -6,7 +6,7 @@ import { PageMeta } from '../components/PageMeta'
 import { SimulationGrid, simulationOpenHref } from '../components/SimulationGrid'
 import {
   chapterShortLabel,
-  getSimulationById,
+  catalogSimulations,
   gradeLabel,
   type Grade,
   type Simulation,
@@ -17,20 +17,20 @@ import './HomePage.css'
 const ease = [0.22, 1, 0.36, 1] as const
 
 const FEATURED_IDS = [
-  'laws-of-reflection',
-  'ph-laboratory',
-  'food-web-builder',
-  'hydraulic-lift',
-  'brain-mapping',
-  'galaxy-types',
+  'final-ray-optics-bench',
+  'final-ph-neutralisation-lab',
+  'final-photosynthesis-gas-exchange',
+  'final-force-pressure-fluids',
+  'final-reflex-arc-nerve-signal',
+  'final-moon-phases-eclipses',
 ]
 
-const SHOWCASE_IDS = ['global-warming', 'circuit-construction', 'periodic-table-builder']
+const SHOWCASE_IDS = ['final-heat-transfer-equilibrium', 'final-circuit-construction-kit', 'final-circulatory-system']
 
 const STEPS = [
   {
-    title: 'Pick a grade',
-    body: 'Grade 8 is split by textbook chapter, so you can go straight to the one you are teaching this week.',
+    title: 'Pick an experiment',
+    body: 'Choose from twelve Class 8 labs across physics, chemistry, biology, and Earth & Space.',
   },
   {
     title: 'Open it in the browser',
@@ -44,7 +44,7 @@ const STEPS = [
 
 function byId(ids: string[]): Simulation[] {
   return ids
-    .map((id) => getSimulationById(id))
+    .map((id) => catalogSimulations.find((sim) => sim.id === id))
     .filter((sim): sim is Simulation => Boolean(sim))
 }
 
@@ -89,8 +89,8 @@ export function HomePage() {
   return (
     <div className="home-page">
       <PageMeta
-        title="SimLab: interactive science simulations for Grades 1–8"
-        description="Free interactive science and math simulations for students and teachers, organised by grade. Grade 8 follows the Punjab textbook chapters."
+        title="SimLab: twelve interactive Class 8 science labs"
+        description="Twelve free Class 8 PCTB science labs. Explore circuits, light, chemistry, the human body, and Moon phases in your browser."
         path="/"
       />
 
@@ -100,7 +100,7 @@ export function HomePage() {
         <Reveal id="subjects" className="subjects">
           <header className="section-head">
             <p className="section-kicker">What&rsquo;s inside</p>
-            <h2>Five subjects, built off the textbook.</h2>
+            <h2>Four subjects. Twelve ways to explore.</h2>
             <p className="section-lede">
               Every simulation runs in the browser — nothing to install, no account, no cost.
             </p>
@@ -219,17 +219,13 @@ export function HomePage() {
         </Reveal>
 
         <Reveal className="closing">
-          <h2>Pick a grade and start experimenting.</h2>
+          <h2>Pick a lab and start experimenting.</h2>
           <p>
-            Browse the full library, or jump to the Grade 8 chapter you are teaching this week.
+            Choose the Class 8 experiment you are teaching this week, or follow your curiosity.
           </p>
           <div className="closing-actions">
             <Link to="/simulations" className="closing-cta">
-              Browse every simulation
-              <span aria-hidden="true"> →</span>
-            </Link>
-            <Link to="/simulations?grade=8&chapter=final-pctb-labs" className="closing-cta">
-              Final simulations
+              Explore all 12 labs
               <span aria-hidden="true"> →</span>
             </Link>
             <Link to="/about" className="closing-link">

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'motion/react'
-import { GRADES, gradeLabel } from '../data/simulations'
+import { SUBJECT_GROUPS } from '../data/subjects'
 import './Footer.css'
 
 export function Footer() {
@@ -18,8 +18,7 @@ export function Footer() {
       <div className="footer-band">
         <p className="footer-brand">SimLab</p>
         <p className="footer-tagline">
-          Free science experiment simulations for Grades 1–8 — pick a grade, open a sim, and learn
-          through exploration.
+          Twelve free Class 8 science labs. Open an experiment and learn through exploration.
         </p>
       </div>
 
@@ -28,9 +27,9 @@ export function Footer() {
           <nav className="footer-links" aria-label="Footer">
             <Link to="/">Home</Link>
             <Link to="/simulations">Simulations</Link>
-            {GRADES.map((grade) => (
-              <Link key={grade} to={`/simulations?grade=${grade}`}>
-                {gradeLabel(grade)}
+            {SUBJECT_GROUPS.map((subject) => (
+              <Link key={subject.id} to={subject.href}>
+                {subject.name}
               </Link>
             ))}
             <Link to="/about">About</Link>

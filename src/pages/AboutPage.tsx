@@ -12,7 +12,7 @@ export function AboutPage() {
     <div className="about-page page-content">
       <PageMeta
         title="About SimLab"
-        description="Learn about SimLab interactive science experiment simulations for Grades 1–8."
+        description="Learn about the twelve Class 8 PCTB science labs in SimLab."
         path="/about"
       />
 
@@ -25,8 +25,8 @@ export function AboutPage() {
         <p className="about-kicker">About</p>
         <h1>About SimLab</h1>
         <p>
-          SimLab is a free platform for interactive science experiment simulations organized by
-          grade level from Grade 1 to Grade 8.
+          SimLab brings twelve Class 8 PCTB science labs to your browser. Explore physics, chemistry,
+          biology, and Earth & Space through interactive experiments.
         </p>
         <p>Powered by Beta Works.</p>
       </motion.header>
@@ -41,13 +41,13 @@ export function AboutPage() {
         <h2>How it works</h2>
         <ol className="workflow-steps">
           <li>
-            <strong>Open Simulations</strong> — use the Grade 1–8 panel on the left.
+            <strong>Explore the labs</strong> — browse all twelve experiments or filter by subject.
           </li>
           <li>
-            <strong>Pick a grade</strong> — see experiments for that grade.
+            <strong>Pick an experiment</strong> — open a lab to see its controls and learning goals.
           </li>
           <li>
-            <strong>Open a simulation</strong> — run the experiment and review learning goals.
+            <strong>Try a change</strong> — adjust a control, observe the result, and test your understanding.
           </li>
         </ol>
       </motion.section>
@@ -59,14 +59,14 @@ export function AboutPage() {
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.55, delay: 0.08, ease }}
       >
-        <h2>What’s next</h2>
+        <h2>Learn at your own pace</h2>
         <p>
-          More interactive experiments will be added under each grade over time. The grade panel is
-          ready for that content.
+          Repeat an experiment, switch between English and Urdu, or download a lab to explore offline.
+          Each lab keeps its controls, explanations, and quizzes together.
         </p>
         <div className="about-actions">
           <Link to="/simulations" className="btn btn-primary">
-            Open Grade Panel
+            Explore simulations
           </Link>
           <Link to="/" className="btn btn-secondary">
             Back to Home

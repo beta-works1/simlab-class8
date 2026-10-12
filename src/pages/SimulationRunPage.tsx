@@ -39,6 +39,7 @@ export function SimulationRunPage() {
     )
   }
 
+  const isFinalLab = sim.sceneryHtml?.startsWith('/final-sims/') ?? false
   const backHref =
     sim.grade === 8
       ? `/simulations?grade=8`
@@ -47,9 +48,11 @@ export function SimulationRunPage() {
   return (
     <div className="sim-run-page sim-run-phet">
       <PageMeta title={sim.title} description={sim.description} path={`/run/${sim.id}`} />
-      <a className="sim-run-exit" href={backHref}>
-        ← Catalog
-      </a>
+      {!isFinalLab && (
+        <a className="sim-run-exit" href={backHref}>
+          ← Catalog
+        </a>
+      )}
       <div className="sim-run-stage">
         <Suspense fallback={<ViewerSkeleton />}>
           <SimulationViewer sim={sim} />

@@ -4,6 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "build:final-ui": "node scripts/build-final-labs-ui.mjs",
+    "test:final-ui": "node scripts/check-final-labs-ui.mjs",
     "dev": "vite",
     "build": "tsc -b && vite build",
     "build:gs8": "tsc -b && vite build && node scripts/check-bundle-budget.mjs",

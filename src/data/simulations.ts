@@ -1347,6 +1347,35 @@ export const simulations: Simulation[] = [
   },
 ]
 
+/** Public catalog policy. The complete archive above remains available by ID. */
+export const PUBLIC_SIMULATION_IDS = [
+  'final-circuit-construction-kit',
+  'final-ray-optics-bench',
+  'final-force-pressure-fluids',
+  'final-ph-neutralisation-lab',
+  'final-reflex-arc-nerve-signal',
+  'final-heat-transfer-equilibrium',
+  'final-states-of-matter',
+  'final-sound-vibration-pitch',
+  'final-photosynthesis-gas-exchange',
+  'final-simple-machines',
+  'final-circulatory-system',
+  'final-moon-phases-eclipses',
+] as const
+
+const publicIds = new Set<string>(PUBLIC_SIMULATION_IDS)
+export const catalogSimulations = simulations.filter((sim) => publicIds.has(sim.id))
+
+/** Search is deliberately limited to the public collection, including for old URLs. */
+export function searchCatalog(query: string): Simulation[] {
+  const terms = query.trim().toLocaleLowerCase().split(/\s+/).filter(Boolean)
+  return catalogSimulations.filter((sim) => {
+    const text = [sim.title, sim.description, ...sim.keywords, ...sim.learningGoals]
+      .join(' ').toLocaleLowerCase()
+    return terms.every((term) => text.includes(term))
+  })
+}
+
 export function getSimulationById(id: string): Simulation | undefined {
   return simulations.find((s) => s.id === id)
 }
@@ -1488,9 +1517,9 @@ export function groupSimulationsByChapter(sims: Simulation[]): ChapterGroup[] {
 
 export function getRelatedSimulations(sim: Simulation, limit = 4): Simulation[] {
   const sameChapter = sim.chapter
-    ? simulations.filter((s) => s.id !== sim.id && s.chapter === sim.chapter)
+    ? catalogSimulations.filter((s) => s.id !== sim.id && s.chapter === sim.chapter)
     : []
-  const sameGrade = simulations.filter(
+  const sameGrade = catalogSimulations.filter(
     (s) =>
       s.id !== sim.id &&
       s.grade === sim.grade &&
